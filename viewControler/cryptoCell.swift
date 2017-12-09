@@ -20,10 +20,13 @@ class cryptoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        print("awake from nib message")
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+//        self.backgroundColor = UIColor.cyan
 
         // Configure the view for the selected state
     }

@@ -9,7 +9,6 @@ provides-dynamic-lookup:
 depends-top-level:
 - !private "!="
 - !private "=="
-- !private "AnyObject"
 - "Array"
 - !private "AssignmentPrecedence"
 - !private "CastingPrecedence"
@@ -104,6 +103,7 @@ depends-member:
 - !private ["s9EquatableP", "shared"]
 - !private ["s9EquatableP", "signal"]
 - !private ["s9EquatableP", "wait"]
+- !private ["s5ErrorP", "localizedDescription"]
 - !private ["s25ExpressibleByArrayLiteralP", "allowFragments"]
 - !private ["s25ExpressibleByArrayLiteralP", "append"]
 - !private ["s25ExpressibleByArrayLiteralP", "subscript"]
@@ -236,7 +236,6 @@ depends-member:
 - !private ["s26_RangeReplaceableIndexableP", "subscript"]
 - !private ["s11_StrideableP", "init"]
 - !private ["s16_SwiftStringViewP", "init"]
-- !private ["11BitcoinBell16coinmarketcapAPIC", "AnyObject"]
 - !private ["11BitcoinBell16coinmarketcapAPIC", "DispatchSemaphore"]
 - !private ["11BitcoinBell16coinmarketcapAPIC", "Float"]
 - !private ["11BitcoinBell16coinmarketcapAPIC", "Int"]
@@ -282,6 +281,7 @@ depends-nominal:
 - !private "8Dispatch0A4TimeV"
 - !private "s9EncodableP"
 - !private "s9EquatableP"
+- !private "s5ErrorP"
 - !private "s25ExpressibleByArrayLiteralP"
 - !private "s27ExpressibleByBooleanLiteralP"
 - !private "s30ExpressibleByDictionaryLiteralP"

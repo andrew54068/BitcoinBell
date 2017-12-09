@@ -14,12 +14,9 @@ class coinmarketcapAPI {
         let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/\(nameOfCoin)/?convert=\(fiatCoinCategory)")
         let semaphore = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            
-            guard error == nil else{
-                print("error = \(error as AnyObject)")
-                return
-            }
-            if data != nil{
+            if error != nil{
+                print("error = \(String(describing: (error?.localizedDescription)!))")
+            }else if data != nil{
                 do{
                     Json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [[String:Any]]
                     print("Json = \(String(describing: Json!))")
