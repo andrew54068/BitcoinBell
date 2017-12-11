@@ -27,7 +27,17 @@ class CryptoObject: NSObject{
     var percent_change_7d: Float?
     var last_updated: Float?
     
-    func fetchCryptoList(requestType: requestType, name: String?, limit: Int?, completionHandler: ([CryptoCategory]) -> () ){
+//    override func setValue(_ value: Any?, forKey key: String) {
+//        if key == "1"{
+//            total_supply = (value as? String)!
+//        }
+//        else{
+//            super.setValue(value, forKey: key)
+//        }
+//    }
+    
+    //        , completionHandler: ([CryptoObject]) -> () )
+    static func fetchCryptoInfo(requestType: requestType, name: String?, limit: Int?, completionHandler: @escaping ([CryptoObject]) -> () ){
         let urlRootString = "https://api.coinmarketcap.com/v1/ticker/"
         var urlString: String = ""
         
@@ -45,7 +55,7 @@ class CryptoObject: NSObject{
         let url = URL(string: urlString)
         let request = URLRequest(url: url!)
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil{
                 print("error = \(String(describing: error))")
             }
@@ -54,36 +64,52 @@ class CryptoObject: NSObject{
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [[String:AnyObject]]
                     print("json = \(json!)")
                     
+                    var cryptoObjects = [CryptoObject]()
+                    
                     if let js = json{
-                        for eachCrypto in json!{
+                        for eachCrypto in js{
+                            print("eachCrypto = \(eachCrypto)")
                             let crypto = CryptoObject()
+//                            crypto.setValuesForKeys(eachCrypto)
+//                            cryptoObjects.append(crypto)
+                            
                             crypto.id = eachCrypto["id"] as? String
                             crypto.name = eachCrypto["name"] as? String
                             crypto.symbol = eachCrypto["symbol"] as? String
-                            crypto.rank = eachCrypto["rank"] as? Int
-                            crypto.price_usd = eachCrypto["price_usd"] as? Float
-                            crypto.price_btc = eachCrypto["price_btc"] as? Float
-                            crypto.volume_usd_24h = eachCrypto["24h_volume_usd"] as? Float
-                            crypto.market_cap_usd = eachCrypto["market_cap_usd"] as? Float
-                            crypto.available_supply = eachCrypto["available_supply"] as? Float
-                            crypto.percent_change_1h = eachCrypto["percent_change_1h"] as? Float
-                            crypto.percent_change_24h = eachCrypto["percent_change_24h"] as? Float
-                            crypto.percent_change_7d = eachCrypto["percent_change_7d"] as? Float
-                            crypto.last_updated = eachCrypto["last_updated"] as? Float
+                            crypto.rank = Int(eachCrypto["rank"] as! String)
+                            crypto.price_usd = Float(eachCrypto["price_usd"] as! String)
+                            crypto.price_btc = Float(eachCrypto["price_btc"] as! String)
+                            crypto.volume_usd_24h = Float(eachCrypto["24h_volume_usd"] as! String)
+                            crypto.market_cap_usd = Float(eachCrypto["market_cap_usd"] as! String)
+                            crypto.available_supply = Float(eachCrypto["available_supply"] as! String)
+                            crypto.percent_change_1h = Float(eachCrypto["percent_change_1h"] as! String)
+                            crypto.percent_change_24h = Float(eachCrypto["percent_change_24h"] as! String)
+                            crypto.percent_change_7d = Float(eachCrypto["percent_change_7d"] as! String)
+                            crypto.last_updated = Float(eachCrypto["last_updated"] as! String)
+                            cryptoObjects.append(crypto)
+                            
                         }
                     }
                     
+                    DispatchQueue.main.async {
+                        completionHandler(cryptoObjects)
+                    }
+                    
+//                    print("cryptoObjects[0] = \(cryptoObjects[0])")
+                    print("cryptoObjects = \(cryptoObjects)")
                 }
                 catch let err {
                     print("err = \(err)")
                 }
             }
-        }
+        }.resume()
     }
     
-    enum requestType {
-        case top100
-        case specific
-        case none
-    }
+    
+}
+
+enum requestType {
+    case top100
+    case specific
+    case none
 }

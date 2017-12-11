@@ -1,0 +1,9 @@
+version: "Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)"
+options: "f6224985cc221335c5e8cd04ce8ba433"
+build_time: [1509940422, 463131000]
+inputs:
+  "/Users/kidnapper/Documents/BitcoinBell/model/coinmarketcapAPI.swift": [1509886263, 0]
+  "/Users/kidnapper/Documents/BitcoinBell/model/dataFromJson.swift": [1509703287, 0]
+  "/Users/kidnapper/Documents/BitcoinBell/viewControler/cryptoCell.swift": [1509937759, 0]
+  "/Users/kidnapper/Documents/BitcoinBell/BitcoinBell/VC_main.swift": [1509940422, 0]
+  "/Users/kidnapper/Documents/BitcoinBell/BitcoinBell/AppDelegate.swift": [1508946428, 0]
