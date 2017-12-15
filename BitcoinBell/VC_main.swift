@@ -84,30 +84,8 @@ class VC_main: UIViewController, UITableViewDelegate, UITableViewDataSource{
         cell.price.text = cryptoInfos[indexPath.item].price_usd?.description
         cell.volume.text = cryptoInfos[indexPath.item].volume_usd_24h?.description
         
+        cell.selectionStyle = .none
         
-//        cell.name.text = dataFromJson.arrayForUser![indexPath.row]["name"] as? String
-//        cell.symbol.text = dataFromJson.arrayForUser![indexPath.row]["symbol"] as? String
-//        cell.price.text = dataFromJson.arrayForUser![indexPath.row]["price_usd"] as? String
-//        cell.volume.text = dataFromJson.arrayForUser![indexPath.row]["market_cap_usd"] as? String
-//        cell.separatorInset.left = 5
-//        cell.separatorInset.right = 5
-//        cell.layer.cornerRadius = 30
-//        cell.layer.borderWidth = 6
-
-        
-//        let rectOfCell = self.tableView.rectForRow(at: indexPath)
-//        let rectOfCellInSuperview = self.tableView.convert(rectOfCell, to: tableView.superview)
-//        print(rectOfCellInSuperview)
-        
-//        let fakeBorder = UIView()
-//        fakeBorder.frame = CGRect(x: 0, y: 0, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
-//        fakeBorder.backgroundColor = UIColor.white
-//        fakeBorder.addSubview(cell)
-////        cell.addSubview(fakeBorder)
-//        cell.backgroundColor = UIColor.red
-//        cell.layer.borderColor = cell.superview?.backgroundColor?.cgColor
-////        print("cell's right coordinate = \(cell.frame.)")
-//        tableView.separatorInset = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
         return cell
     }
 
